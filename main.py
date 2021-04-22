@@ -80,9 +80,11 @@ if __name__ == "__main__":
                             image_text = image.find(class_="Caption").text
                         # Open a local file with wb ( write binary ) permission.
                             filename_extension = image_src.split(".")[-1]
-                            filename = f"{article_dir_path}/{image_text}.{filename_extension}"
+                            filename = f"{article_dir_path}/main_image_{count}.{filename_extension}"
                             with open(filename,'wb') as f:
                                 shutil.copyfileobj(req.raw, f)
+                            with open(f"{article_dir_path}/article_data.txt",'w',encoding="utf-8") as f:
+                                f.write(f"main_image_{count}:{image_text}\n")
             else:
                 print("no main image")
             
